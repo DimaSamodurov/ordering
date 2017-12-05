@@ -1,7 +1,11 @@
 Rails.application.routes.draw do
 
-  resources :orders
+  devise_for :admin_users, ActiveAdmin::Devise.config
   devise_for :users
-  root to: 'welcome#index'
 
+  ActiveAdmin.routes(self)
+
+  resources :orders
+
+  root to: 'welcome#index'
 end
