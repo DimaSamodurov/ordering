@@ -11,7 +11,9 @@ feature 'User registration', type: :system do
       fill_in 'Password confirmation', with: '123456'
       click_on 'Sign up'
 
-      expect(page).to have_content 'You have signed up successfully. '
+      within '.orders-section' do
+        expect(page).to have_content 'Ваші замовлення'
+      end
     end
   end
 end
