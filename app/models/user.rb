@@ -7,6 +7,6 @@ class User < ApplicationRecord
   attr_accessor :first_name, :last_name, :email, :password, :remember_me
 
   def name
-    "#{first_name} #{last_name} #{organizations_name}"
+    "#{first_name} #{last_name}"
   end
 end
