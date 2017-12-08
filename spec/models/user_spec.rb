@@ -4,7 +4,7 @@ RSpec.describe User, type: :model do
 
   describe '#name' do
     it 'returns first and last name concatenated with space' do
-      user = User.new(first_name: 'Dima', last_name: 'Samodurov')
+      user = User.new(first_name: 'Dima', last_name: 'Samodurov', role: 'user')
 
       user_name = user.name
 
