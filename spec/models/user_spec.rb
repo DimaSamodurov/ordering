@@ -8,7 +8,7 @@ RSpec.describe User, type: :model do
 
       user_name = user.name
 
-      expect(user_name).to eq 'Dima Samodurov user'
+      expect(user_name).to eq 'Dima Samodurov'
     end
   end
 end
