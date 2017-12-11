@@ -25,6 +25,7 @@ ActiveAdmin.register Order do
     column :customer_name
     column :contractor_code
     column :contractor_name
+    actions
   end
 
 end
