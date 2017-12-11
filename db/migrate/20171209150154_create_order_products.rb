@@ -5,7 +5,7 @@ class CreateOrderProducts < ActiveRecord::Migration[5.1]
       t.string :product_name
       t.integer :amount
       t.integer :price
-      t.integer :order_id, index: true
+      t.belongs_to :order, index: true
 
       t.timestamps
     end
