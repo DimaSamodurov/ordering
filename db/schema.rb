@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20171206140315) do
+ActiveRecord::Schema.define(version: 20171209150154) do
 
   create_table "active_admin_comments", force: :cascade do |t|
     t.string "namespace"
@@ -43,11 +43,30 @@ ActiveRecord::Schema.define(version: 20171206140315) do
     t.index ["reset_password_token"], name: "index_admin_users_on_reset_password_token", unique: true
   end
 
-  create_table "orders", force: :cascade do |t|
-    t.integer "user_id"
-    t.string "message"
+  create_table "order_products", force: :cascade do |t|
+    t.integer "product_code"
+    t.string "product_name"
+    t.integer "amount"
+    t.integer "price"
+    t.integer "order_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.index ["order_id"], name: "index_order_products_on_order_id"
+  end
+
+  create_table "orders", force: :cascade do |t|
+    t.integer "code"
+    t.integer "order_product_code"
+    t.integer "customer_code"
+    t.string "customer_name"
+    t.integer "contractor_code"
+    t.string "contractor_name"
+    t.datetime "create_at"
+    t.integer "order_product_id"
+    t.integer "user_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["order_product_id"], name: "index_orders_on_order_product_id"
     t.index ["user_id"], name: "index_orders_on_user_id"
   end
 
