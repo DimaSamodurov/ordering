@@ -12,4 +12,19 @@ ActiveAdmin.register Order do
 #   permitted
 # end
 
+
+  index do
+    column :user do |order|
+      order.user.email
+    end
+
+    column :note
+    column :code
+    column :order_num
+    column :customer_code
+    column :customer_name
+    column :contractor_code
+    column :contractor_name
+  end
+
 end
