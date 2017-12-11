@@ -55,13 +55,13 @@ ActiveRecord::Schema.define(version: 20171209150154) do
   end
 
   create_table "orders", force: :cascade do |t|
-    t.integer "code"
-    t.integer "order_item_code"
-    t.integer "customer_code"
+    t.string "code"
+    t.string "order_num"
+    t.string "customer_code"
     t.string "customer_name"
-    t.integer "contractor_code"
+    t.string "contractor_code"
     t.string "contractor_name"
-    t.datetime "create_at"
+    t.string "note"
     t.integer "user_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
