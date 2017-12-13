@@ -4,7 +4,7 @@ class User < ApplicationRecord
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :trackable, :validatable
 
-  attr_accessor :first_name, :last_name, :role, :email, :password, :remember_me
+  #attr_accessor :first_name, :last_name, :role, :email, :password, :remember_me
 
   def name
     "#{first_name} #{last_name}"
