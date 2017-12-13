@@ -11,6 +11,28 @@
     </div>
   <% end %>
 
+
+  <div class="field">
+    <%= form.label :product_code %>
+    <%= form.text_field :product_code %>
+  </div>
+
+  <div class="field">
+    <%= form.label :product_name %>
+    <%= form.text_field :product_name, id: 'order_product_name' %>
+  </div>
+
+  <div class="field">
+    <%= form.label :amount %>
+    <%= form.text_field :amount, id: 'order_amount' %>
+  </div>
+
+  <div class="field">
+    <%= form.label :price %>
+    <%= form.text_field :price, id: 'order_price' %>
+  </div>
+
+
   <div class="field">
     <%= form.label :note %>
     <%= form.text_field :note, id: 'order_note' %>

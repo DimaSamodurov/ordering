@@ -44,23 +44,26 @@ ActiveRecord::Schema.define(version: 20171209150154) do
   end
 
   create_table "order_items", force: :cascade do |t|
-    t.integer "item_code"
-    t.string "item_name"
-    t.integer "amount"
-    t.integer "price"
-    t.integer "order_id"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
-    t.index ["order_id"], name: "index_order_items_on_order_id"
-  end
-
-  create_table "orders", force: :cascade do |t|
     t.string "code"
     t.string "order_num"
     t.string "customer_code"
     t.string "customer_name"
     t.string "contractor_code"
     t.string "contractor_name"
+    t.string "note"
+    t.integer "order_id"
+    t.integer "user_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["order_id"], name: "index_order_items_on_order_id"
+    t.index ["user_id"], name: "index_order_items_on_user_id"
+  end
+
+  create_table "orders", force: :cascade do |t|
+    t.integer "product_code"
+    t.string "product_name"
+    t.integer "amount"
+    t.integer "price"
     t.string "note"
     t.integer "user_id"
     t.datetime "created_at", null: false
