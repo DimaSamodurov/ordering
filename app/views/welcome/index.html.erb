@@ -9,13 +9,23 @@
       <h2>Ваші замовлення</h2>
       <table>
         <tr>
-          <th>Номер</th>
-          <th>Дата</th>
+          <th>Номер замовлення</th>
+          <th>Код замовника</th>
+          <th>Код товару</th>
+          <th>Назва товару</th>
+          <th>Кількість одиниць товару</th>
+          <th>Вартість одиниці товару</th>
+          <th>Дата створення замовлення</th>
           <th>Повідомлення</th>
         </tr>
         <% @client_orders.each do |order| %>
             <tr>
               <td><%= order.id %></td>
+              <td><%= order.user_id %></td>
+              <td><%= order.product_code %></td>
+              <td><%= order.product_name %></td>
+              <td><%= order.amount %></td>
+              <td><%= order.price %></td>
               <td><%= order.created_at %></td>
               <td><%= order.note %></td>
             </tr>
