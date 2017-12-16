@@ -49,7 +49,6 @@ ActiveRecord::Schema.define(version: 20171214175204) do
     t.integer "order_id"
     t.decimal "unit_price", precision: 12, scale: 3
     t.integer "quantity"
-    t.string "role"
     t.decimal "total_price", precision: 12, scale: 3
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
@@ -63,7 +62,6 @@ ActiveRecord::Schema.define(version: 20171214175204) do
     t.decimal "tax", precision: 12, scale: 3
     t.decimal "shipping", precision: 12, scale: 3
     t.decimal "total", precision: 12, scale: 3
-    t.string "product_name"
     t.integer "user_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
