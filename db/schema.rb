@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20171209150154) do
+ActiveRecord::Schema.define(version: 20171214175204) do
 
   create_table "active_admin_comments", force: :cascade do |t|
     t.string "namespace"
@@ -44,31 +44,37 @@ ActiveRecord::Schema.define(version: 20171209150154) do
   end
 
   create_table "order_items", force: :cascade do |t|
-    t.string "code"
-    t.string "order_num"
-    t.string "customer_code"
-    t.string "customer_name"
-    t.string "contractor_code"
-    t.string "contractor_name"
-    t.string "note"
-    t.integer "order_id"
+    t.integer "product_id"
     t.integer "user_id"
+    t.integer "order_id"
+    t.decimal "unit_price", precision: 12, scale: 3
+    t.integer "quantity"
+    t.string "role"
+    t.decimal "total_price", precision: 12, scale: 3
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["order_id"], name: "index_order_items_on_order_id"
+    t.index ["product_id"], name: "index_order_items_on_product_id"
     t.index ["user_id"], name: "index_order_items_on_user_id"
   end
 
   create_table "orders", force: :cascade do |t|
-    t.integer "product_code"
+    t.decimal "subtotal", precision: 12, scale: 3
+    t.decimal "tax", precision: 12, scale: 3
+    t.decimal "shipping", precision: 12, scale: 3
+    t.decimal "total", precision: 12, scale: 3
     t.string "product_name"
-    t.integer "amount"
-    t.integer "price"
-    t.string "note"
     t.integer "user_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["user_id"], name: "index_orders_on_user_id"
+  end
+
+  create_table "products", force: :cascade do |t|
+    t.string "name"
+    t.decimal "price", precision: 12, scale: 3
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
   end
 
   create_table "users", force: :cascade do |t|
