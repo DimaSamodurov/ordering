@@ -1,34 +1,11 @@
-<h1>Вітаємо</h1>
-
-
 <% if user_signed_in? %>
-    <%= link_to current_user.email, edit_user_registration_path %>
-    <%= link_to "Logout", destroy_user_session_path, method: :delete %>
-
-    <div class="orders-section">
-      <h2>Ваші замовлення</h2>
-      <table>
-        <tr>
-          <th>Номер</th>
-          <th>Дата</th>
-          <th>Повідомлення</th>
-        </tr>
-        <% @client_orders.each do |order| %>
-            <tr>
-              <td><%= order.id %></td>
-              <td><%= order.created_at %></td>
-              <td><%= order.note %></td>
-            </tr>
-        <% end %>
-      </table>
-    </div>
-    <hr>
-
+    <h2>Ваші замовлення</h2>
+    <%= render 'orders/list', orders: current_user.orders %>
     <div>
       <%= link_to "Нове замовлення", new_order_path %>
     </div>
 <% else %>
-    Зареєструйтесь в системі
-    <%= link_to "Register", new_user_registration_path %> |
-    <%= link_to "Login", new_user_session_path %>
+    <h1>Вітаємо</h1>
+    <%= link_to "Зареєструватись", new_user_registration_path %> |
+    <%= link_to "Увійти", new_user_session_path %>
 <% end %>
