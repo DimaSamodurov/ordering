@@ -62,9 +62,11 @@ ActiveRecord::Schema.define(version: 20171214175204) do
     t.decimal "tax", precision: 12, scale: 3
     t.decimal "shipping", precision: 12, scale: 3
     t.decimal "total", precision: 12, scale: 3
+    t.string "status"
     t.integer "user_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.index ["status"], name: "index_orders_on_status"
     t.index ["user_id"], name: "index_orders_on_user_id"
   end
 

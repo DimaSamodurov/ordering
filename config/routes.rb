@@ -9,7 +9,11 @@ Rails.application.routes.draw do
 
   ActiveAdmin.routes(self)
 
-  #resources :orders
+  resources :orders do
+    member do
+      put 'submit'
+    end
+  end
 
   root to: 'welcome#index'
 end

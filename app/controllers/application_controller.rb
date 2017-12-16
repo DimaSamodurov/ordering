@@ -4,11 +4,8 @@ class ApplicationController < ActionController::Base
   helper_method :current_order
 
   def current_order
-    if !session[:order_id].nil?
-      Order.find(session[:order_id])
-    else
-      Order.new
-    end
+    result = Order.new_orders.where(id: session[:order_id]).first if session[:order_id]
+    result || Order.new
   end
 
 

@@ -5,6 +5,7 @@ class CreateOrders < ActiveRecord::Migration[5.1]
       t.decimal :tax, precision: 12, scale: 3
       t.decimal :shipping, precision: 12, scale: 3
       t.decimal :total, precision: 12, scale: 3
+      t.string :status, index: true
       t.belongs_to :user
 
       t.timestamps
