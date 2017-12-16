@@ -26,7 +26,7 @@ class OrdersController < ApplicationController
   def create
     @order = Order.new(order_params)
     @order.user_id = current_user.id
-
+    @order_item = OrderItem.create
     respond_to do |format|
       if @order.save
         format.html { redirect_to @order, notice: 'Order was successfully created.' }
@@ -70,6 +70,6 @@ class OrdersController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def order_params
-      params.require(:order).permit(:user_id, :product_code, :product_name, :amount, :price, :note)
+      params.require(:order).permit(:user_id, :order_item_id, :product_code, :product_name, :amount, :price, :note)
     end
 end
