@@ -1,26 +1,28 @@
 <!DOCTYPE html>
-<html>
-<title>Замовлення Хлібу</title>
-<%= javascript_include_tag 'application', 'data-turbolinks-track' => true %>
-<%= stylesheet_link_tag 'application', media: 'all', 'data-turbolinks-track' => true %>
+<html lang="en">
+<head>
+  <meta charset="utf-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
 
-<%= csrf_meta_tags %>
+  <title><%= content_for?(:title) ? yield(:title) : "Замовлення Хлібу" %></title>
+
+  <%= stylesheet_link_tag "application" %>
+  <%= javascript_include_tag "application", 'data-turbolinks-track' => true %>
+  <%= csrf_meta_tags %>
 </head>
+
 <body>
-  <div class="row">
-    <div class="col-xs-6">
-      <h1><%= link_to "Замовлення Хлібу", root_path %></h1>
-      <% if user_signed_in? %>
-          <%= link_to current_user.email, edit_user_registration_path %>
-          <%= link_to "Logout", destroy_user_session_path, method: :delete %>
-      <% end %>
-    </div>
-    <div class="col-xs-6 text-right">
-      <h1 class="cart-text"> <%= render 'layouts/cart_text' if !current_order&.order_items&.blank? %></h1>
-    </div>
-  </div>
-  <hr>
+<header>
+  <%= render 'header' %>
+</header>
+
+<main>
   <%= yield %>
-</div>
+</main>
+
+<footer>
+  <%= render 'footer' %>
+</footer>
+
 </body>
 </html>
