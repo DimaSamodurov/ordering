@@ -12,6 +12,12 @@
   <% end %>
 
   <div class="field">
+    <%= form.label :amount %>
+    <%= form.text_field :amount, id: 'order_amount' %>
+  </div>
+
+
+  <div class="field">
     <%= form.label :note %>
     <%= form.text_field :note, id: 'order_note' %>
   </div>
