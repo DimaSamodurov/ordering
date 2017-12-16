@@ -19,6 +19,8 @@ ActiveAdmin.register Order do
     column :user do |order|
       order.user.name
     end
+    column :status
+
 
     column :products do |order|
       order.order_items.map { |item| item.product.name }.join(', ')
