@@ -11,9 +11,9 @@ feature 'Registration user by admin', type: :system do
       click_on 'New User'
       fill_in  'First name', with: 'someuser'
       fill_in  'Last name', with: 'userlastname'
-      fill_in 'Password', with: '1234567'
+      #fill_in 'Password', with: '1234567'
       fill_in 'Email', with: 'user@sample.net'
-      fill_in 'Encrypted password', with: '1234567'
+      fill_in 'Password', with: '1234567'
       fill_in 'Role', with: 'customer'
       click_on 'Create User'
 
