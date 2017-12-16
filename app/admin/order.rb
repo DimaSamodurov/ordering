@@ -2,7 +2,7 @@ ActiveAdmin.register Order do
 # See permitted parameters documentation:
 # https://github.com/activeadmin/activeadmin/blob/master/docs/2-resource-customization.md#setting-up-strong-parameters
 #
-# permit_params :list, :of, :attributes, :on, :model
+  permit_params :user_id, :product_id
 #
 # or
 #
@@ -12,19 +12,22 @@ ActiveAdmin.register Order do
 #   permitted
 # end
 
-
   index do
+    column :order do |order|
+      order.id
+    end
     column :user do |order|
-      order.user.email
+      order.user.name
+    end
+    column :status
+
+
+    column :products do |order|
+      order.order_items.map { |item| item.product.name }.join(', ')
     end
 
-    column :note
-    column :code
-    column :order_num
-    column :customer_code
-    column :customer_name
-    column :contractor_code
-    column :contractor_name
+    column 'Разом', :subtotal
+
     actions
   end
 
