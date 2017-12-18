@@ -5,7 +5,7 @@ feature 'Домашня сторінка', type: :system do
      let(:user) { create :user }
      let(:another_user) { create :user, email: 'another@test.net' }
 
-    scenario 'відображення списку замовлень' do
+    scenario 'відображає замовленя активного користувача, але не інших користувачів.' do
       order1 = create :order, user: user, status: Order::NEW
       order2 = create :order, user: user, status: Order::SUBMITTED
 
