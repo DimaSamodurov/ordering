@@ -1,0 +1,70 @@
+<style type="text/css">
+   .block1 {
+     position: static;
+     background: #f0f0f0;
+     height: 100px;
+   }
+   .block2 {
+     position: static;
+     height: 100px;
+
+   }
+   </style>
+
+    <div class="block1"> <%='Підтвердженні'%>
+        <% current_user.orders.each do |order| %>
+        <%if order.status == 'submitted' %>
+
+        <% order.order_items.each do |item|%>
+        <div>
+          <table width="100%" cellspacing="0" border="1">
+        <thead>
+          <tr>
+              <th colspan="1">Назва товару</th>
+              <th colspan="1">Ціна за одиницю товару</th>
+              <th colspan="1">Загальна вартість</th>
+              <th colspan="1">День замовлення</th>
+            </tr>
+        </thead>
+      </tbody>
+      <tr>
+        <td><%=item.product.name%></td>
+        <td><%=item.unit_price%></td>
+        <td><%=item.total_price%></td>
+        <td><%=item.updated_at%></td>
+        </tr>
+      </tbody>
+</table>
+
+<%end%>
+<%end%>
+<%end%>
+</div>
+<div class = "block2"><%='Очікують'%>
+<% current_user.orders.each do |order| %>
+<% if order.status == 'new'%>
+<% order.order_items.each do |item|%>
+
+<table width="100%" cellspacing="0" border="1">
+<thead>
+    <tr>
+      <th colspan="1">Product name</th>
+      <th colspan="1">Unit price</th>
+      <th colspan="1">Total price</th>
+      <th colspan="1">Date</th>
+    </tr>
+</thead>
+</tbody>
+<tr>
+<td><%=item.product.name%></td>
+<td><%=item.unit_price%></td>
+<td><%=item.total_price%></td>
+<td><%=item.updated_at%></td>
+</tr>
+</tbody>
+</table>
+
+<%end%>
+<%end%>
+<%end%>
+</div>
