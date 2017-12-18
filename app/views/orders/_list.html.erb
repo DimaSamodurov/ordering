@@ -8,7 +8,7 @@
   </thead>
   <tbody>
   <% orders.each do |order| %>
-      <tr>
+      <tr id="order_<%= order.id %>">
         <td><%= order.created_at %></td>
         <td><%= order.status %></td>
         <td><%= order.order_items.map{ |item|item.product.name}.join(', ') %></td>

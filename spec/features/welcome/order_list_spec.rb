@@ -3,20 +3,22 @@ require 'rails_helper'
 feature 'Домашня сторінка', type: :system do
   context 'для зареєстрованого користувача що має замовлення' do
      let(:user) { create :user }
-
-     before do
-       create :order, user: user, status: Order::NEW
-       create :order, user: user, status: Order::SUBMITTED
-     end
+     let(:another_user) { create :user, email: 'another@test.net' }
 
     scenario 'відображення списку замовлень' do
+      order1 = create :order, user: user, status: Order::NEW
+      order2 = create :order, user: user, status: Order::SUBMITTED
+
+      order3 = create :order, user: another_user
+
       sign_in user
 
       visit root_path
 
       expect(page).to have_content 'Ваші замовлення'
 
-      expect(page).to show_orders
+      expect(page).to show_orders(order1, order2)
+      expect(page).to_not show_orders(order3)
     end
   end
 end
