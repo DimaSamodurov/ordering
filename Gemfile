@@ -34,7 +34,14 @@ gem 'jbuilder', '~> 2.5'
 # Use ActiveModel has_secure_password
 # gem 'bcrypt', '~> 3.1.7'
 
+# More JS
+gem 'jquery-rails', '~> 4.3.1'
+# Styling
 gem 'foundation-rails', '~> 6.4.1'
+# Icons
+gem 'foundation-icons-sass-rails', '~> 3.0'
+# HTML template engine
+gem 'slim-rails'
 
 # Use Capistrano for deployment
 # gem 'capistrano-rails', group: :development
