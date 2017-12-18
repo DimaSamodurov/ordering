@@ -1,0 +1,18 @@
+doctype html
+html lang='en'
+  head
+    meta charset='utf-8' 
+    meta content='width=device-width, initial-scale=1.0' name='viewport' 
+    title = content_for?(:title) ? yield(:title) : 'Замовлення Хлібу'
+    = stylesheet_link_tag 'application'
+    = javascript_include_tag 'application', 'data-turbolinks-track' => true
+    = csrf_meta_tags
+  body
+    header
+      = render 'layouts/header'
+    main
+      = render 'layouts/breadcrumbs'
+      = render 'layouts/messages'
+      = yield
+    footer
+      = render 'layouts/footer' 

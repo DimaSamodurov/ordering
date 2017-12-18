@@ -1,0 +1,8 @@
+.navbar-text.pull-right
+  ul.dropdown.menu data-dropdown-menu=""
+    li
+      = link_to current_user.name, edit_user_registration_path
+      ul.menu
+        li
+          = link_to "Вийти", destroy_user_session_path, method: :delete
+
