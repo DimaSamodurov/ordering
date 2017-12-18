@@ -1,0 +1,14 @@
+.top-bar
+  .top-bar-left
+    .grid-x
+      .logo.small-2.cell
+        =image_tag 'bread-logo.jpg'
+      .small-10.cell
+        h2= link_to "Замовлення Хлібу", root_path
+
+  .top-bar-right
+    = render 'layouts/cart_text' if !current_order&.order_items&.blank?
+  .top-bar-right
+    = render 'layouts/profile' if user_signed_in?
+
+

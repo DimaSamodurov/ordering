@@ -1,8 +1,9 @@
 class OrderItem < ApplicationRecord
+  belongs_to :order
   belongs_to :product, optional: true
   belongs_to :order, optional: true
   belongs_to :user, optional: true
-  validates :quantity, presence: true, numericality: { only_integer: true, greater_than: 0 }
+  validates :quantity, presence: true, numericality: {only_integer: true, greater_than: 0}
   validate :product_present
   validate :order_present
 
@@ -12,7 +13,7 @@ class OrderItem < ApplicationRecord
     if persisted?
       self[:unit_price]
     else
-     product.price
+      product.price
     end
   end
 
@@ -20,7 +21,7 @@ class OrderItem < ApplicationRecord
     unit_price * quantity
   end
 
-private
+  private
   def product_present
     if product.nil?
       errors.add(:product, "is not valid or is not active.")
@@ -34,10 +35,9 @@ private
 
   end
 
-    def finalize
-      self[:unit_price] = unit_price
-      self[:total_price] = quantity * self[:unit_price]
-    end
-
+  def finalize
+    self[:unit_price]  = unit_price
+    self[:total_price] = quantity * self[:unit_price]
+  end
 
 end

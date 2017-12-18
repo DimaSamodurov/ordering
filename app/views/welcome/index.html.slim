@@ -1,0 +1,13 @@
+- if user_signed_in?
+  .grid-x
+    .medium-6.cell
+      h2 Ваші замовлення
+    .medium-6.cell
+      = link_to "Нове замовлення", products_url, class: 'button float-right'
+  = render 'orders/list', orders: current_user.orders
+
+- else
+  h1 Вітаємо
+  = link_to "Зареєструватись", new_user_registration_path
+  |  &nbsp;|&nbsp;
+  = link_to "Увійти", new_user_session_path
