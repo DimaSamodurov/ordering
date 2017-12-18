@@ -55,6 +55,8 @@ group :development, :test do
   gem 'chromedriver-helper'
   # User RSpec for testing
   gem 'rspec-rails', '~> 3.6'
+  gem 'factory_bot'
+  gem 'pry-byebug'
 end
 
 group :development do
