@@ -1,9 +1,9 @@
 doctype html
 html lang='en'
   head
-    meta charset='utf-8' 
-    meta content='width=device-width, initial-scale=1.0' name='viewport' 
-    title = content_for?(:title) ? yield(:title) : 'Замовлення Хлібу'
+    meta charset='utf-8'
+    meta content='width=device-width, initial-scale=1.0' name='viewport'
+    title = content_for?(:title) ? yield(:title) : 'Замовлення Хліба'
     = stylesheet_link_tag 'application'
     = javascript_include_tag 'application', 'data-turbolinks-track' => true
     = csrf_meta_tags
@@ -15,4 +15,4 @@ html lang='en'
       = render 'layouts/messages'
       = yield
     footer
-      = render 'layouts/footer' 
+      = render 'layouts/footer'
