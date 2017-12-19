@@ -1,18 +1,69 @@
+<script type="text/javascript">
+var visible = true;
+function showTableSubmitted() {
+if(visible) {
+  document.getElementById('ListOrders').style.display = 'none';
+  visible = false;
+} else {
+document.getElementById('ListOrders').style.display = 'block';
+visible = true;
+}
+return false
+}
+
+function showTableNew() {
+if(visible) {
+  document.getElementById('List').style.display = 'none';
+  visible = false;
+} else {
+document.getElementById('List').style.display = 'block';
+visible = true;
+}
+return false
+}
+</script>
+
+<p><a href="#" onclick= "return showTableSubmitted();"><%='Підтвердженні'%></a></p>
+<div id= "ListOrders">
 <table class="orders responsive-card-table unstriped">
   <thead>
-  <tr>
+    <tr>
     <th>Дата</th>
-    <th>Статус замовлення</th>
     <th colspan="3">Вміст</th>
   </tr>
   </thead>
-  <tbody>
+    <tbody>
   <% orders.each do |order| %>
-      <tr id="order_<%= order.id %>">
+  <%if order.status == 'submitted'%>
+        <tr id="order_<%= order.id %>">
         <td><%= order.created_at %></td>
-        <td><%= order.status %></td>
         <td><%= order.order_items.map{ |item|item.product.name}.join(', ') %></td>
       </tr>
-  <% end %>
+      <%end%>
+    </tbody>
+    <%end%>
+  </table>
+</div>
+<br>
+<p><a href="#" onclick= "return showTableNew();"><%='Очікують'%></a></p>
+<div id ="List">
+  <table class="orders responsive-card-table unstriped">
+    <thead>
+      <tr>
+      <th>Дата</th>
+      <th colspan="3">Вміст</th>
+    </tr>
+    </thead>
+    <tbody>
+    <% orders.each do |order| %>
+      <%if order.status == 'new'%>
+            <tr id="order_<%= order.id %>">
+            <td><%= order.created_at %></td>
+            <td><%= order.order_items.map{ |item|item.product.name}.join(', ') %></td>
+          </tr>
+          <%end%>
+
   </tbody>
+  <% end %>
 </table>
+</div>
