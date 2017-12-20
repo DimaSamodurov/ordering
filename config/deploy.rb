@@ -3,7 +3,7 @@ require 'mina/bundler'
 require 'mina/rails'
 require 'mina/git'
 #require 'mina/rbenv' # for rbenv support. (http://rbenv.org)
-require 'mina/rvm'    # for rvm support. (http://rvm.io)
+require 'mina/rvm' # for rvm support. (http://rvm.io)
 require 'mina/whenever'
 
 # Basic settings:
@@ -21,7 +21,10 @@ set :bundle_path, '/home/deploy/ordering/shared/bundle'
 
 # shared dirs and files will be symlinked into the app-folder by the 'deploy:link_shared_paths' step.
 set :shared_dirs, fetch(:shared_dirs, []).push('log', 'upload', 'file_import')
-set :shared_files, fetch(:shared_files, []).push('config/secrets.yml', '.env', 'config/google_drive.json')
+set :shared_files, fetch(:shared_files, []).push(
+  'config/secrets.yml',
+  '.env',
+  'db/production.sqlite3')
 
 # Optional settings:
 set :user, 'deploy' # Username in the server to SSH to.
@@ -49,7 +52,7 @@ end
 # For Rails apps, we'll make some of the shared paths that are shared between
 # all releases.
 task setup: :environment do
-  deploy_to = fetch(:deploy_to)
+  deploy_to   = fetch(:deploy_to)
   shared_path = fetch(:shared_path)
   command %(sudo mkdir -p "#{deploy_to}")
   command %(sudo chown -R deploy:deploy "#{deploy_to}")
@@ -65,9 +68,6 @@ task setup: :environment do
 
   command %(mkdir -p "#{shared_path}/upload")
   command %(chmod g+rx,u+rwx "#{shared_path}/upload")
-
-  command %(mkdir -p "#{shared_path}/file_import")
-  command %(chmod g+rx,u+rwx "#{shared_path}/file_import")
 
   command %(touch "#{shared_path}/config/database.yml")
   command %(touch "#{shared_path}/config/secrets.yml")
