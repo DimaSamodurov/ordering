@@ -1,0 +1,26 @@
+table.orders.responsive-card-table.unstriped
+  thead
+    tr
+      th Дата
+      th Статус замовлення
+      th colspan="3"  Вміст
+  tbody
+    - orders.each do |order|
+      tr id="order_#{order.id}"
+        td= order.created_at
+        td= order.status
+        td= order.order_items.map { |item|item.product.name}.join(', ')
+
+
+h2 Альтернативне Відображення замовлень
+
+ul.accordion data-accordion=""
+  - orders.each do |order|
+    li.accordion-item data-accordion-item=""
+      /! Accordion tab title
+      a.accordion-title href="#"
+        =order.created_at
+      /! Accordion tab content: it would start in the open state due to using the `is-active` state class.
+      .accordion-content data-tab-content=""
+        = render partial: 'orders/order_item', collection: order.order_items
+
