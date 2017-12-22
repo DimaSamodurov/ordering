@@ -14,5 +14,6 @@
 //= require jquery3
 //= require foundation
 //= require turbolinks
+//= require list.js
 
 $(function(){ $(document).foundation(); });

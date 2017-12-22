@@ -1,0 +1,25 @@
+<table class="table-expand">
+  <thead>
+    <tr class="table-expand-row">
+      <th width="200">Дата</th>
+      <th>Статус замовлення</th>
+      <th>Вміст</th>
+      </tr>
+  </thead>
+  <tbody>
+    <% orders.each do |order| %>
+    <tr class="table-expand-row" data-open-details>
+      <td><%= order.created_at %></td>
+      <td class="text-right" width="200"><%= order.status %></td>
+      <td>Details<span class="expand-icon"></span></td>
+</tr>
+
+    <tr class="table-expand-row-content">
+      <td colspan="8" class="table-expand-row-nested">
+        <%= order.order_items.map{ |item|item.product.name}.join(', ') %>
+        </td>
+    </tr>
+    <%end%>
+    </tbody>
+
+  </table>

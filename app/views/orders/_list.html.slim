@@ -38,7 +38,7 @@ table.responsive-card-table.unstriped
      Дата
       = order.created_at
     p
-     Статус 
+     Статус
       = order.status
 
 
@@ -59,3 +59,24 @@ table.responsive-card-table.unstriped
 
   button.close-button aria-label=("Close reveal") data-close="" type="button"
     span aria-hidden="true"  &times;
+
+
+h2 Замовлення з додатковою табличкою
+table.table-expand
+  thead
+    tr.table-expand-row
+      th width="200"  Дата
+      th Статус замовлення
+      th Вміст
+  tbody
+  - orders.each do |order|
+    tr id="order_#{order.id}"
+    tr.table-expand-row data-open-details=""
+      td = order.created_at
+      td.text-right width="200"  = order.status
+      td
+        | product
+        span.expand-icon
+    tr.table-expand-row-content
+      td.table-expand-row-nested colspan="8"
+         = order.order_items.map{ |item|item.product.name}.join(', ')
