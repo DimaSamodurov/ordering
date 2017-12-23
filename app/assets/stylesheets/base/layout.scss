@@ -1,3 +1,15 @@
 main, header, footer {
   padding: 0 75px;
 }
+
+header{
+  .logo img{
+    width: 100px;
+  }
+
+  .top-bar{
+    background: transparent;
+  }
+
+  border-bottom: 6px solid orange;
+}

@@ -1,0 +1,16 @@
+.grid-x
+  .medium-4
+    h4= product.name
+  .medium-6
+    = form_for order_item, remote: true do |f|
+      .grid-x
+        .medium-6
+          h4.text-right
+            | Ціна за одиницю:
+            span style=("color: green") = number_to_currency product.price
+        .medium-6
+          .input-group
+            = f.number_field :quantity, value: 1, class: "form-control", min: 1
+            .input-group-btn
+              = f.hidden_field :product_id, value: product.id
+              = f.submit "Додати", class: "success button small"

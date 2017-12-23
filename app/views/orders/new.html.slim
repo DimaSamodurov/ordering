@@ -1,0 +1,6 @@
+h3.text-center Нове Замовлення
+- @products.each do |product|
+  = render "order_items/new_order_item", product: product, order_item: @order_item
+
+= button_to 'Відправити замовлення', submit_order_path(@order), class: 'button'
+= button_to 'Скасувати замовлення',  order_path(@order), method: :delete, confirm: 'Ви дійсно хочете скасувати замовлення?', class: 'button alert'

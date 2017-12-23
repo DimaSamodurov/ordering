@@ -1,0 +1,6 @@
+.grid-x
+  .medium-6
+    h2 Ваші замовлення
+  .medium-6
+    = link_to "Нове замовлення", new_order_path, class: 'button float-right'
+  = render 'orders/list', orders: current_user.orders

@@ -1,19 +1,18 @@
 Rails.application.routes.draw do
-
-  resources :products, only: [:index]
-  resource :cart, only: [:show]
-  resources :order_items, only: [:create, :update, :destroy], defaults: { format: 'js' }
+  ActiveAdmin.routes(self)
 
   devise_for :admin_users, ActiveAdmin::Devise.config
   devise_for :users
 
-  ActiveAdmin.routes(self)
+  resource :cart, only: [:show]
 
   resources :orders do
     member do
       put 'submit'
     end
   end
+  resources :order_items, only: [:create, :update, :destroy], defaults: { format: 'js' }
+  resources :products, only: [:index]
 
   root to: 'welcome#index'
 end

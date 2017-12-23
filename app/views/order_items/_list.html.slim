@@ -1,0 +1,14 @@
+table
+  thead
+    tr
+      th Продукт
+      th Ціна за одиницю
+      th Кількість
+      th Разом
+  tbody
+    - list.each do |order_item|
+      tr
+        td= order_item.product.name
+        td= order_item.unit_price
+        td= order_item.quantity
+        td= order_item.total_price

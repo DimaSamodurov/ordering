@@ -1,10 +1,5 @@
 - if user_signed_in?
-  .grid-x
-    .medium-6.cell
-      h2 Ваші замовлення
-    .medium-6.cell
-      = link_to "Нове замовлення", products_url, class: 'button float-right'
-  = render 'orders/list', orders: current_user.orders
+  = render 'orders/index'
 
 - else
   h1 Вітаємо
