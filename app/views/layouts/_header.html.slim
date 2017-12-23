@@ -7,6 +7,7 @@
         h2= link_to "Замовлення Хліба", root_path
 
   .top-bar-right
-    = render 'layouts/cart_text' if !current_order&.order_items&.blank?
+    .cart-text
+      = render 'layouts/cart_text' if !current_order&.order_items&.blank?
   .top-bar-right
     = render 'layouts/profile' if user_signed_in?
