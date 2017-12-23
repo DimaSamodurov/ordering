@@ -1,4 +1,4 @@
-table.table-expand
+table.table-expand.stack
   thead
     tr.table-expand-row
       th.date Дата
@@ -7,8 +7,7 @@ table.table-expand
       th.content Вміст
   tbody
   - orders.each do |order|
-    tr id="order_#{order.id}"
-    tr.table-expand-row data-open-details=""
+    tr.table-expand-row data-open-details="" id="order_#{order.id}"
       td = order.created_at
       td = order.status
       td = order.subtotal
