@@ -18,7 +18,7 @@ Rails.application.routes.draw do
 
   get 'test', action: :test, controller: 'welcome'
 
-  get 'product_list', action: :product_list, controller: 'orders'
+  get 'product_list/:id', action: :product_list, controller: 'orders'
 
 
 end

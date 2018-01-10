@@ -14,7 +14,7 @@
             <span aria-hidden="true">&times;</span>
           </button>
         </div>
-        <a href "#" id= "hrefonclick" onclick="return listProducts(this);"data-open="exampleModal1">Product</a>
+        <a href "#" onclick="return listProducts(<%= order.id %>);"data-open="exampleModal1">Product</a>
       </td>
     </tr>
     <% end %>
@@ -23,15 +23,11 @@
 
 </body>
 <script type="text/javascript">
-$(document).ready(function(){
-  
 
-});
-
-function listProducts(){
+function listProducts(orderId){
 
   $.ajax({
-    url: "/product_list"
+    url: "/product_list/"+orderId
   }).done(function(data) {
     var products = data;
     displayProducts(products, document);
@@ -40,6 +36,7 @@ function listProducts(){
 
   return false;
 }
+
 function displayProducts(products, doc){
 
   var html = renderProducts(products);

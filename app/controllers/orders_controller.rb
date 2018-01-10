@@ -1,5 +1,5 @@
 class OrdersController < ApplicationController
-  before_action :set_order, only: [:show, :edit, :update, :destroy, :submit]
+  before_action :set_order, only: [:show, :edit, :update, :destroy, :submit, :product_list]
 
   # GET /orders
   # GET /orders.json
@@ -81,7 +81,8 @@ class OrdersController < ApplicationController
 
 
 def product_list
-     products = [{"name": "banana"},{"name": "apple"},{"name": "pen"}]
+
+     products = @order.order_items.map { |item| {name: item.product.name} }
      render json: products
 end
 
