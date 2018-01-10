@@ -79,6 +79,12 @@ class OrdersController < ApplicationController
     end
   end
 
+
+def product_list
+     products = [{"name": "banana"},{"name": "apple"},{"name": "pen"}]
+     render json: products
+end
+
   private
     # Use callbacks to share common setup or constraints between actions.
     def set_order

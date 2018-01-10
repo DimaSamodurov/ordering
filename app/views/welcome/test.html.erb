@@ -1,0 +1,60 @@
+<body>
+  <table>
+    <% current_user.orders.each do |order| %>
+
+    <tr>
+      <td><%= order.created_at %></td>
+      <td><%= order.status %></td>
+      <td  >
+        <div class="reveal" id="exampleModal1" data-reveal data-remote="true" data-url ="/test">
+
+          <p id='product'>  <%= order.order_items.map { |item| item.product.name }.join(', ') %></p>
+
+          <button class="close-button" data-close aria-label="Close modal" type="button">
+            <span aria-hidden="true">&times;</span>
+          </button>
+        </div>
+        <a href "#" id= "hrefonclick" onclick="return listProducts(this);"data-open="exampleModal1">Product</a>
+      </td>
+    </tr>
+    <% end %>
+
+  </table>
+
+</body>
+<script type="text/javascript">
+$(document).ready(function(){
+  
+
+});
+
+function listProducts(){
+
+  $.ajax({
+    url: "/product_list"
+  }).done(function(data) {
+    var products = data;
+    displayProducts(products, document);
+  });
+
+
+  return false;
+}
+function displayProducts(products, doc){
+
+  var html = renderProducts(products);
+  doc.querySelector('#product').innerHTML = html;
+
+}
+
+function renderProducts(products){
+  var html = "";
+
+  for (var i = 0; i < products.length; i++){
+    var product = products[i];
+    html = html+"<div>"+product.name+"</div>";
+  }
+  return html;
+}
+
+</script>
