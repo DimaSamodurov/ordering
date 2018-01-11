@@ -44,13 +44,14 @@ function displayProducts(products, doc){
 
 }
 
-function renderProducts(products){
+function renderProducts(products, orderdetails){
   var html = "";
 
   for (var i = 0; i < products.length; i++){
     var product = products[i];
-    html = html+"<div>"+product.name+"</div>";
+    html = html+"<div>"+product.name+", "+"price --"+" "+product.price+", "+"amount --"+" "+product.amount+"</div>";
   }
+  html = html+"<div>"+"total price --"+product.totalPrice+"</div>";
   return html;
 }
 

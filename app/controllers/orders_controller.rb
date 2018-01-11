@@ -80,9 +80,8 @@ class OrdersController < ApplicationController
   end
 
 
-def product_list
-
-     products = @order.order_items.map { |item| {name: item.product.name} }
+  def product_list
+     products = @order.order_items.map { |item| {name: item.product.name, price: item.product.price, amount: item.quantity, totalPrice: @order.subtotal} }
      render json: products
 end
 
