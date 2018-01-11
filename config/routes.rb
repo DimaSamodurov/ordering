@@ -15,4 +15,10 @@ Rails.application.routes.draw do
   resources :products, only: [:index]
 
   root to: 'welcome#index'
+
+  get 'test', action: :test, controller: 'welcome'
+
+  get 'product_list/:id', action: :product_list, controller: 'orders'
+
+
 end

@@ -1,5 +1,5 @@
 class OrdersController < ApplicationController
-  before_action :set_order, only: [:show, :edit, :update, :destroy, :submit]
+  before_action :set_order, only: [:show, :edit, :update, :destroy, :submit, :product_list]
 
   # GET /orders
   # GET /orders.json
@@ -78,6 +78,12 @@ class OrdersController < ApplicationController
       end
     end
   end
+
+
+  def product_list
+     products = @order.order_items.map { |item| {name: item.product.name, price: item.product.price, amount: item.quantity, totalPrice: @order.subtotal} }
+     render json: products
+end
 
   private
     # Use callbacks to share common setup or constraints between actions.

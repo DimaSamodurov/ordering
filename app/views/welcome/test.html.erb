@@ -1,0 +1,58 @@
+<body>
+  <table>
+    <% current_user.orders.each do |order| %>
+
+    <tr>
+      <td><%= order.created_at %></td>
+      <td><%= order.status %></td>
+      <td  >
+        <div class="reveal" id="exampleModal1" data-reveal data-remote="true" data-url ="/test">
+
+          <p id='product'>  <%= order.order_items.map { |item| item.product.name }.join(', ') %></p>
+
+          <button class="close-button" data-close aria-label="Close modal" type="button">
+            <span aria-hidden="true">&times;</span>
+          </button>
+        </div>
+        <a href "#" onclick="return listProducts(<%= order.id %>);"data-open="exampleModal1">Product</a>
+      </td>
+    </tr>
+    <% end %>
+
+  </table>
+
+</body>
+<script type="text/javascript">
+
+function listProducts(orderId){
+
+  $.ajax({
+    url: "/product_list/"+orderId
+  }).done(function(data) {
+    var products = data;
+    displayProducts(products, document);
+  });
+
+
+  return false;
+}
+
+function displayProducts(products, doc){
+
+  var html = renderProducts(products);
+  doc.querySelector('#product').innerHTML = html;
+
+}
+
+function renderProducts(products, orderdetails){
+  var html = "";
+
+  for (var i = 0; i < products.length; i++){
+    var product = products[i];
+    html = html+"<div>"+product.name+", "+"price --"+" "+product.price+", "+"amount --"+" "+product.amount+"</div>";
+  }
+  html = html+"<div>"+"total price --"+product.totalPrice+"</div>";
+  return html;
+}
+
+</script>
