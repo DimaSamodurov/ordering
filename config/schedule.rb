@@ -8,6 +8,6 @@ every 1.day, :at => '4:00 am' do
   #command "#{app} rake ordering:synchronize_products --silent"
 end
 
-every 1.minute do
+every 1.day do
   rake "products:update"
 end
