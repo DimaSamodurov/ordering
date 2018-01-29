@@ -9,6 +9,6 @@
 AdminUser.create!(email: 'admin@example.com', password: 'password', password_confirmation: 'password')
 User.create!(email: 'example@example.com', password: 'example', password_confirmation: 'example' )
 
-Product.create! id: 223, name: "Banana", price: 2
+Product.create! id: 223, name: "Banana", price: 2, previous_price: "5" 
 Product.create! id: 322, name: "Apple", price: 4
 Product.create! id: 332, name: "Carton of Strawberries", price: 1.99
