@@ -27,7 +27,7 @@ feature 'Ціна продуктів у підтвердженому замов�
       expect(page).to have_content ('submitted')
       expect(Order.last.subtotal).to eql 0.74e1
 
-      product.update_attributes price: 9.20
+      product.update_attributes price: 9
       visit root_path
       expect(page).to have_content ('7.4')
       expect(Order.last.subtotal).to eql 0.74e1
@@ -35,14 +35,15 @@ feature 'Ціна продуктів у підтвердженому замов�
       click_on 'Нове замовлення'
       expect(page).to have_content('pen')
       within '.product-price' do
-        expect(page).to have_content ('9.20')
+        expect(page).to have_content ('9')
         expect(page).not_to have_content ('7.40')
       end
 
       click_on 'Додати'
       click_on 'Відправити замовлення'
       visit root_path
-      expect(page).to have_content ('9.2')
+      expect(page).to have_content ('9')
+      expect(Order.last.subtotal).to eql 9
       expect(page).to have_content ('submitted')
       expect(page).to have_content ('7.4')
       expect(page).to have_content ('submitted')
