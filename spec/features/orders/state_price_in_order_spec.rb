@@ -1,54 +1,31 @@
 require 'rails_helper'
 
-feature 'Ціна продуктів у підтвердженому замовленні не змінюється', type: :system do
-  context 'Користувач додає продукт з конкретною ціною та підтверджує замовлення' do
-    let(:user) { user = User.create(email: 'user@sample.net', password: '123456') }
+feature 'Ціна продуктів у підтвердженому замовленні не змінюється' do
+  describe 'Оновлення ціни продукту' do
+    old_price = 7.40
 
-    before do
-      sign_in user
-    end
-    let!(:product) { create :product, price: 7.40, name: 'pen' }
-    scenario 'замовлення успішно створюється та ціна зберігається' do
+    let(:user) { create :user }
+    let!(:product) { create :product, price: old_price, name: 'pen' }
+    let!(:product1) { create :product, price: 15.00, name: 'pencil' }
 
-      visit root_path
+    context 'що входить до вже сформованого замовлення' do
 
-      expect(page).to have_text('Ваші замовлення')
-
-      click_on 'Нове замовлення'
-      expect(page).to have_content('pen')
-      within '.product-price' do
-        expect(page).to have_content ('7.40')
+      before do
+        @order = create :order, status: 'submitted', user: user
+        @order.order_items << build(:order_item, product: product, quantity: 2)
+        @order.order_items << build(:order_item, product: product1, quantity: 1)
       end
 
-      click_on 'Додати'
-      click_on 'Відправити замовлення'
-      visit root_path
-      expect(page).to have_content ('7.4')
-      expect(page).to have_content ('submitted')
-      expect(Order.last.subtotal).to eql 0.74e1
-
-      product.update_attributes price: 9
-      visit root_path
-      expect(page).to have_content ('7.4')
-      expect(Order.last.subtotal).to eql 0.74e1
-
-      click_on 'Нове замовлення'
-      expect(page).to have_content('pen')
-      within '.product-price' do
-        expect(page).to have_content ('9')
-        expect(page).not_to have_content ('7.40')
+      scenario 'не змінює сумарну вартість замовлення' do
+        expect { product.update_attributes price: 9 }.to_not change { @order.subtotal }
       end
 
-      click_on 'Додати'
-      click_on 'Відправити замовлення'
-      visit root_path
-      expect(page).to have_content ('9')
-      expect(Order.last.subtotal).to eql 9
-      expect(page).to have_content ('submitted')
-      expect(page).to have_content ('7.4')
-      expect(page).to have_content ('submitted')
+      scenario 'не змінює вартість позиції цього продукту в замовленні' do
+        product.update_attributes price: 9
 
-
+        order_item = @order.order_items.find_by(product_id: product.id)
+        expect(order_item.unit_price).to eql old_price
+      end
     end
   end
 end
