@@ -25,10 +25,12 @@ feature 'Ціна продуктів у підтвердженому замов�
       visit root_path
       expect(page).to have_content ('7.4')
       expect(page).to have_content ('submitted')
+      expect(Order.last.subtotal).to eql 0.74e1
 
       product.update_attributes price: 9.20
       visit root_path
       expect(page).to have_content ('7.4')
+      expect(Order.last.subtotal).to eql 0.74e1
 
       click_on 'Нове замовлення'
       expect(page).to have_content('pen')
