@@ -20,5 +20,6 @@ Rails.application.routes.draw do
 
   get 'product_list/:id', action: :product_list, controller: 'orders'
 
+  get 'products/charts', action: :charts, controller: 'products'
 
 end
