@@ -8,7 +8,7 @@ feature 'Ціна продуктів у підтвердженому замов�
       sign_in user
     end
     let!(:product) { create :product, price: 7.40, name: 'pen' }
-    scenario 'order is created successfully' do
+    scenario 'замовлення успішно створюється та ціна зберігається' do
 
       visit root_path
 
