@@ -4,6 +4,7 @@ class ProductPrices < ActiveRecord::Migration[5.1]
       t.string :product_name
       t.decimal :price, precision: 12, scale: 3
       t.datetime :effective_date
+      t.belongs_to :product
       t.timestamps
     end
   end

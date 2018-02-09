@@ -74,8 +74,10 @@ ActiveRecord::Schema.define(version: 20180131203359) do
     t.string "product_name"
     t.decimal "price", precision: 12, scale: 3
     t.datetime "effective_date"
+    t.integer "product_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.index ["product_id"], name: "index_product_prices_on_product_id"
   end
 
   create_table "products", force: :cascade do |t|
