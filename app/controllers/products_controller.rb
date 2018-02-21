@@ -1,6 +1,8 @@
 class ProductsController < ApplicationController
 
   def charts
-    render layout: nil
+    @product = Product.find_by(params[:name]) 
+     render layout: nil
   end
+
 end
