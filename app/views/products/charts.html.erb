@@ -6,13 +6,13 @@
   google.charts.setOnLoadCallback(drawChart);
   function drawChart() {
 
-var datasArray = []
+var data = []
 
-    <%@product.map do|product| %>
-    var data = google.visualization.arrayToDataTable(
+    <%@products.map do|product| %>
+    var productData = google.visualization.arrayToDataTable(
       <%= product_prices(product.name).to_json.html_safe %>
     );
-    datasArray.push(data);
+    data.push(productData);
     <%end%>
 
     var options = {
@@ -24,13 +24,11 @@ var datasArray = []
 
 
 
-    for(var f = 0; f < datasArray.length; f++){
-      var randomId = Math.random(10);
+    for(var f = 0; f < data.length; f++){
       var addedElement = document.createElement('div');
-      addedElement.id = randomId;
       document.body.appendChild(addedElement);
-      var chart = new google.visualization.LineChart(document.getElementById(randomId));
-      chart.draw(datasArray[f], options);
+      var chart = new google.visualization.LineChart(addedElement);
+      chart.draw(data[f], options);
     }
 
 
