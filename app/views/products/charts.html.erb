@@ -4,34 +4,33 @@
   <script type="text/javascript">
   google.charts.load('current', {'packages':['corechart']});
   google.charts.setOnLoadCallback(drawChart);
+
+  var products = []
+
+  <%@products.map do|product| %>
+      var productData =  <%= product_prices(product.name).to_json.html_safe %>;
+      var product = {name: "<%=product.name%>", price_list: productData};
+      products.push(product);
+  <%end%>
+
   function drawChart() {
+    drawProducts(products);
+  }
 
-var data = []
+  function drawProducts(products){
+    for(var f = 0; f < products.length; f++){
+      var product = products[f];
+      var options = {
+        title: product.name,
+        curveType: 'function',
+        legend: { position: 'bottom' }
+      };
 
-    <%@products.map do|product| %>
-    var productData = google.visualization.arrayToDataTable(
-      <%= product_prices(product.name).to_json.html_safe %>
-    );
-    data.push(productData);
-    <%end%>
-
-    var options = {
-      title: 'Product Prices',
-      curveType: 'function',
-      legend: { position: 'bottom' }
-    };
-
-
-
-
-    for(var f = 0; f < data.length; f++){
-      var addedElement = document.createElement('div');
-      document.body.appendChild(addedElement);
-      var chart = new google.visualization.LineChart(addedElement);
-      chart.draw(data[f], options);
+      var chartRoom = document.createElement('div');
+      document.body.appendChild(chartRoom);
+      var chart = new google.visualization.LineChart(chartRoom);
+      chart.draw(google.visualization.arrayToDataTable(product.price_list), options);
     }
-
-
   }
   </script>
 </head>

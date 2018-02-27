@@ -11,7 +11,7 @@ ActiveAdmin.register Product do
 
     end
 
-    
+
       column 'table product' do |product|
         panel "Product prices" do
           table_for ProductPrice.for(product.name).each do |pr|
