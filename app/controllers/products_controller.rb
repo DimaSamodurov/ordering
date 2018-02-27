@@ -1,6 +1,8 @@
 class ProductsController < ApplicationController
 
   def charts
-    render layout: nil
+    @products = Product.all
+     render layout: nil
   end
+
 end

@@ -2,27 +2,38 @@
 <head>
   <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
   <script type="text/javascript">
-    google.charts.load('current', {'packages':['corechart']});
-    google.charts.setOnLoadCallback(drawChart);
+  google.charts.load('current', {'packages':['corechart']});
+  google.charts.setOnLoadCallback(drawChart);
 
-    function drawChart() {
-      var data = google.visualization.arrayToDataTable(
-          <%= product_prices('pen').to_json.html_safe %>
-      );
+  var products = []
 
+  <%@products.map do|product| %>
+      var productData =  <%= product_prices(product.name).to_json.html_safe %>;
+      var product = {name: "<%=product.name%>", price_list: productData};
+      products.push(product);
+  <%end%>
+
+  function drawChart() {
+    drawProducts(products);
+  }
+
+  function drawProducts(products){
+    for(var f = 0; f < products.length; f++){
+      var product = products[f];
       var options = {
-        title: 'Product Prices',
+        title: product.name,
         curveType: 'function',
         legend: { position: 'bottom' }
       };
 
-      var chart = new google.visualization.LineChart(document.getElementById('curve_chart'));
-
-      chart.draw(data, options);
+      var chartRoom = document.createElement('div');
+      document.body.appendChild(chartRoom);
+      var chart = new google.visualization.LineChart(chartRoom);
+      chart.draw(google.visualization.arrayToDataTable(product.price_list), options);
     }
+  }
   </script>
 </head>
 <body>
-<div id="curve_chart" style="width: 900px; height: 500px"></div>
 </body>
 </html>
