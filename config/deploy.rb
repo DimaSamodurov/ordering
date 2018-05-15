@@ -102,7 +102,7 @@ task deploy: :environment do
         command %{mkdir -p tmp/}
         command %{touch tmp/restart.txt}
       end
-      invoke 'whenever:update'
+      #invoke 'whenever:update'
     end
 
     on :clean do
